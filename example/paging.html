@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="http://code.jquery.com/jquery-2.2.3.min.js"></script>
+    <script src="../src/jquery.pager.js"></script>
+    <style>
+      #paged > div {
+        display: none;
+      }
+      #paged > div.current {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="paged">
+      <div id="page-1" class="current">
+        On page one
+      </div>
+      <div id="page-2">
+        On page two
+      </div>
+      <div id="page-3">
+        On page three
+      </div>
+    </div>
+
+    <div class="controls">
+      <button id="prev">Prev</button>
+      <button id="next">Next</button>
+    </div>
+    <script>
+      var pager = $('#paged').pager({
+        prefix: 'page-'
+      });
+      pager.onPage(function(number, content) {
+        console.log("Switched to page " + number + ": " + content.text());
+      });
+
+      $('#next').click(function() { pager.nextPage(); });
+      $('#prev').click(function() { pager.prevPage(); });
+    </script>
+  </body>
+</html>
